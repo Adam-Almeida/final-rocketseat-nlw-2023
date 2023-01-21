@@ -21,3 +21,8 @@
 - Tsx -D
 - @fastify/cors
 - Dayjs
+
+# OTHERS
+
+- EpochTimestamp
+- Raw Sql
