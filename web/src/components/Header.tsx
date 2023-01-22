@@ -11,12 +11,12 @@ export function Header() {
       <Dialog.Root>
         <Dialog.Trigger
           onClick={() => {}}
-          className="border border-violet-500 font-semibold rounded-lg
+          className="border border-lime-500 font-semibold rounded-lg
               px-6 py-4 flex items-center gap-3 
-              hover:border-violet-300 transition-border duration-500"
+              hover:border-lime-300 transition-border duration-500"
           type="button"
         >
-          <Plus size={20} className="text-violet-500" />
+          <Plus size={20} className="text-lime-500" />
           Novo hábito
         </Dialog.Trigger>
 
