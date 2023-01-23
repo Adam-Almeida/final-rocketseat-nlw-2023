@@ -1,6 +1,8 @@
 import * as Checkbox from "@radix-ui/react-checkbox";
+import { toast } from "react-toastify";
 import { Check } from "phosphor-react";
 import { FormEvent, useState } from "react";
+import { api } from "../lib/axios";
 
 const availableWeekDays = [
   "Domingo",
@@ -15,9 +17,23 @@ export function NewHabitForm() {
   const [title, setTitle] = useState("");
   const [weekDays, setWeekDays] = useState<number[]>([]);
 
-  function createNewHabit(e: FormEvent) {
+  async function createNewHabit(e: FormEvent) {
     e.preventDefault();
-    console.log(title, weekDays)
+
+    if (!title || weekDays.length === 0) {
+      toast.warning("Ops! Preencha os campos corretamente");
+      return;
+    }
+
+    await api.post("habits", {
+      title,
+      weekDays,
+    });
+
+    setTitle("");
+    setWeekDays([]);
+
+    toast.success("Hábito criado com sucesso");
   }
 
   function handleToogleWeekDay(weekDay: number) {
@@ -42,6 +58,7 @@ export function NewHabitForm() {
         id="title"
         placeholder="ex: Exercícios, dormir bem, etc..."
         autoFocus
+        value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
 
@@ -54,6 +71,7 @@ export function NewHabitForm() {
             key={weekDay}
             className="flex items-center gap-3 group "
             onCheckedChange={() => handleToogleWeekDay(index)}
+            checked={weekDays.includes(index)}
           >
             <div className="group-data-[state=checked]:bg-lime-500 group-data-[state=checked]:border-lime-400 h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-300">
               <Checkbox.Indicator>
