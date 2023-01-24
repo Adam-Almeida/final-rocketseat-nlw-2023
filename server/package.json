@@ -7,7 +7,9 @@
     "zod": "^3.20.2"
   },
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "build": "tsc",
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^9.3.0",
