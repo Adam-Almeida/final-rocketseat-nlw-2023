@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch src/server.ts",
-    "start": "node dist"
+    "start": "node dist/src/server.js"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^9.3.0",
