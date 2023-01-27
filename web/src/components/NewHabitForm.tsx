@@ -10,10 +10,15 @@ const availableWeekDays = [
   "Terça Feira",
   "Quarta Feira",
   "Quinta Feira",
+  "Sexta Feira",
   "Sábado",
 ];
 
-export function NewHabitForm() {
+interface NewFormProps {
+  closeModal: () => void;
+}
+
+export function NewHabitForm({ closeModal }: NewFormProps) {
   const [title, setTitle] = useState("");
   const [weekDays, setWeekDays] = useState<number[]>([]);
 
@@ -32,6 +37,7 @@ export function NewHabitForm() {
 
     setTitle("");
     setWeekDays([]);
+    closeModal();
 
     toast.success("Hábito criado com sucesso");
   }
@@ -73,7 +79,11 @@ export function NewHabitForm() {
             onCheckedChange={() => handleToogleWeekDay(index)}
             checked={weekDays.includes(index)}
           >
-            <div className="group-data-[state=checked]:bg-lime-500 group-data-[state=checked]:border-lime-400 h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-300">
+            <div
+              className="group-data-[state=checked]:bg-lime-500
+             group-data-[state=checked]:border-lime-400 h-8 w-8 rounded-lg 
+             flex items-center justify-center bg-zinc-900 border-2 border-zinc-300 transition-colors"
+            >
               <Checkbox.Indicator>
                 <Check size={20} weight="bold" />
               </Checkbox.Indicator>
@@ -90,7 +100,8 @@ export function NewHabitForm() {
         type="submit"
         className="p-4 w-full mt-3 rounded-lg gap-3
         flex items-center font-semibold bg-green-600
-        justify-center hover:bg-green-700 transition-bg duration-500"
+        justify-center hover:bg-green-700 transition-bg duration-500
+        transition-colors"
       >
         <Check size={20} weight="bold" /> Confirmar
       </button>
